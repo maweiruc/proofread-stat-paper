@@ -40,7 +40,7 @@ The `\usepackage{color}` is harmless even if `color` is already loaded via other
 ## Annotation Rules
 
 1. **NEVER modify the original text.** Only add annotations.
-2. **Primary command**: `\techcheck{问题说明}` — renders the issue description in blue brackets. Place **after** the affected expression or environment.
+2. **Primary command**: `\techcheck{issue description}` — renders the issue description in blue brackets. Place **after** the affected expression or environment.
    - For an issue with a specific formula, equation, or sentence, place the annotation immediately after it.
    - For an issue spanning a larger block (e.g. a proof step), place the annotation at the end of the paragraph or display math.
    - The `[...]` brackets are added automatically by the command — do NOT include brackets in the argument.

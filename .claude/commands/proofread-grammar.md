@@ -40,7 +40,7 @@ The `\usepackage{color}` is harmless even if `color` is already loaded via other
 ## Annotation Rules
 
 1. **NEVER modify the original text.** Only add annotations.
-2. **Primary command**: `\grammarcheck{原文}{问题说明}` — renders original text in red, followed by the issue description in red brackets.
+2. **Primary command**: `\grammarcheck{original text}{issue description}` — renders original text in red, followed by the issue description in red brackets.
    - The `[...]` brackets around the issue description are added automatically by the command — do NOT include brackets in the second argument.
    - Example: `\grammarcheck{teh}{typo: should be ``the''}` renders as red "teh" + red "[typo: should be "the"]".
 3. **Issue descriptions** should be concise and in English (no brackets — the command adds them):
@@ -54,7 +54,7 @@ The `\usepackage{color}` is harmless even if `color` is already loaded via other
    - Example: after a display equation, add `\textcolor{red}{subject-verb disagreement in the sentence preceding this equation}`.
 5. **For unmatched braces `{`** in the original text that cannot be wrapped by any LaTeX command:
    - Place `\textcolor{red}{unmatched left brace: missing closing bracket}` at the end of the sentence.
-6. **For normal prose**, always prefer `\grammarcheck{原文}{问题}` over `\textcolor{red}{...}`.
+6. **For normal prose**, always prefer `\grammarcheck{original text}{issue}` over `\textcolor{red}{...}`.
 
 ## What to Check
 
@@ -77,7 +77,7 @@ The `\usepackage{color}` is harmless even if `color` is already loaded via other
 2. **Setup preamble** in `<ANNOTATED_FILE>`: inject `\usepackage{color}` and `\grammarcheck` definition if missing.
 3. **Read** the target scope of `<ANNOTATED_FILE>`.
 4. **Identify** all grammar / typo / phrasing / punctuation issues.
-5. **Annotate** each issue in-place using `\grammarcheck{原文}{问题}`.
+5. **Annotate** each issue in-place using `\grammarcheck{original text}{issue}`.
    - Fall back to `\textcolor{red}{...}` only for math-mode or unmatched-brace cases per rules 4-5 above.
 6. **Compile to verify**: run `pdflatex -interaction=nonstopmode <TEX_BASE>_annotated.tex` from `<PROJECT_DIR>`.
 7. If compilation fails, fix the annotation (not the original text) and recompile. Repeat until clean.

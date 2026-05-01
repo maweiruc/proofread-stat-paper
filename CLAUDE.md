@@ -24,8 +24,8 @@ Both produce `<file>_annotated.tex` (shared file) and append to `proofread_repor
 
 Two LaTeX commands are injected into the annotated file's preamble if missing:
 
-- `\grammarcheck{原文}{问题}` — red, wraps original text in-place
-- `\techcheck{问题}` — blue, placed after the affected expression
+- `\grammarcheck{original text}{issue}` — red, wraps original text in-place
+- `\techcheck{issue}` — blue, placed after the affected expression
 
 Both require `\usepackage{color}` (also auto-injected). The `[...]` brackets around issue descriptions are added by the command definitions — skill examples must not show brackets in the argument text.
 

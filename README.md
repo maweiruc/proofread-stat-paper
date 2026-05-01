@@ -39,8 +39,8 @@ cp .claude/commands/proofread-technical.md ~/.claude/commands/
 Each command produces two outputs:
 
 1. **`<paper>_annotated.tex`** — the LaTeX source with inline annotations:
-   - Grammar issues: `\grammarcheck{原文}{问题}` in red
-   - Technical issues: `\techcheck{问题}` in blue
+   - Grammar issues: `\grammarcheck{original text}{issue}` in red
+   - Technical issues: `\techcheck{issue}` in blue
    - The annotated file is shared — running both commands on the same paper accumulates both annotation types.
 
 2. **`proofread_report.md`** — a structured review report appended to on each run, organized by severity / category.
