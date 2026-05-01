@@ -1,0 +1,13 @@
+*.aux
+*.log
+*.out
+*.pdf
+*_annotated.tex
+proofread_report.md
+.claude/settings.local.json
+
+# Allow example output
+!examples/test_paper.pdf
+!examples/output/*_annotated.tex
+!examples/output/*.pdf
+!examples/output/proofread_report.md

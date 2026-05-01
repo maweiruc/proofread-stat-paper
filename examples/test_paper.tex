@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{A Note on the Asymptotic Distribution of the Weighted Median Estimator}
+\author{Test Author}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+The weighted median is a robust estimator widely used in high-dimensional regression and quantile estimation. While its consistency has been studied extensively, the asymptotic normality remains not fully understoond. In this paper, we derives the limiting distribution of the weighted median under mild regularity conditions and illustrate its applications to heteroskedastic regression.
+
+Compared to the sample mean, the weighted median is more resilient to outliers and heavy-tailed noise, makes it particular useful in financial and biomedical applications where data quality can not be guaranteed.
+
+\section{Notation and Preliminaries}
+
+Let $X_1, \ldots, X_n$ be i.i.d. random variables from a distribution $F$ with density $f$. Let $w_1, \ldots, w_n$ be non-negative weights satisfying
+\begin{equation}
+    \sum_{i=1}^n w_i = 1.
+\end{equation}
+The weighted median $\hat{\mu}_n$ is defined as
+\begin{equation}
+    \hat{\mu}_n = \inf\left\{ x : \sum_{i=1}^n w_i \mathbf{1}\{X_i \leq x\} \geq \frac{1}{2} \right\}.
+\end{equation}
+
+We denote the true median as $\mu_0 = F^{-1}(1/2)$. The following standard conditions are needed for the main theorem.
+
+\begin{definition}
+The distribution $F$ is said to be \textit{median-regular} if $F$ is continuously differentiable at $\mu_0$ and $F'(\mu_0) = f(\mu_0) > 0$.
+\end{definition}
+
+\section{Main Results}
+
+\begin{theorem}\label{thm:main}
+Let $X_1, \ldots, X_n$ be i.i.d. with a median-regular distribution $F$, and let $w_i = w(X_i)$ where $w(\cdot)$ is a bounded positive function with $\mathbb{E}[w(X)] = 1$. Then, as $n \to \infty$,
+\begin{equation}
+    \sqrt{n}(\hat{\mu}_n - \mu_0) \xrightarrow{d} N\left(0, \sigma^2\right),
+\end{equation}
+where
+\begin{equation}
+    \sigma^2 = \frac{\mathbb{E}[w(X)^2 \mathbf{1}\{X \leq \mu_0\}]}{4 f(\mu_0)^2 \mathbb{E}[w(X)]}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Define the empirical process
+\begin{equation}
+    G_n(x) = \sum_{i=1}^n w_i \mathbf{1}\{X_i \leq x\}.
+\end{equation}
+By the law of large numbers, for each fixed $x$,
+\begin{equation}
+    G_n(x) \xrightarrow{p} \mathbb{E}[w(X) \mathbf{1}\{X \leq x\}] \equiv G(x).
+\end{equation}
+Note that $G(\mu_0) = 1/2$ by the normalization condition on $\mu_0$. The function $G$ is differentiable at $\mu_0$ with $G'(\mu_0) = w(\mu_0) f(\mu_0)$.
+
+The estimator $\hat{\mu}_n$ solves $G_n(\hat{\mu}_n) = 1/2$. By the Bahadur-Kiefer representation,
+\begin{equation}
+    \sqrt{n}(\hat{\mu}_n - \mu_0) = \frac{\sqrt{n}(G_n(\mu_0) - G(\mu_0))}{G'(\mu_0)} + o_p(1).
+\end{equation}
+
+The central limit theorem gives
+\begin{equation}
+    \sqrt{n}(G_n(\mu_0) - G(\mu_0)) \xrightarrow{d} N(0, \tau^2),
+\end{equation}
+where $\tau^2 = \operatorname{Var}(w(X) \mathbf{1}\{X \leq \mu_0\})$. The conclusion follows by Slutsky's theorem, and the variance simplifies to the stated expression after noting that $G'(\mu_0) = f(\mu_0)$ since $\mathbb{E}[w(X)] = 1$.
+\end{proof}
+
+\begin{remark}
+The assumption $\mathbb{E}[w(X)] = 1$ is made without loss of generality, since the weights can always be renormalized. However, this normalization must be done carefully when weights depend on estimated parameters.
+\end{remark}
+
+\section{Simulations}
+
+We conduct a small simulation study to verify the asymptotic approximation in finite sample. Data is generated from a standard Cauchy distribution, and weights are set proportional to $|X_i|$. Figure~\ref{fig:qq} display the QQ-plot of the standardized estimator against the standard normal.
+
+The simulation results confirms the theoretical prediction for $n = 1000$, but reveal noticeable deviation from normality when $n = 100$, particularly in the tails. This is expected because the weighted median has heavier tails than the normal distribution for small sample sizes.
+
+\section{Discussion}
+
+In this paper, the asymptotic normality of the weighted median estimator under data-dependent weights was established. A key limitation is that our theorem require the weights to be bounded, which excludes certain important cases such as inverse-variance weights. Extension to unbounded weight functions and to dependent data are left as future work. The simulation study also suggest that the normal approximation may be poor unless the sample size is quite large, especialy for heavy-tailed distributions.
+
+\end{document}
