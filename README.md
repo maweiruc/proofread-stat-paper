@@ -75,3 +75,7 @@ To try it yourself:
 /proofread-grammar examples/test_paper.tex
 /proofread-technical examples/test_paper.tex
 ```
+
+## Notes
+
+Tested with Claude Code using `deepseek-v4-pro` at maximum effort. Results may vary with other models or effort settings.
